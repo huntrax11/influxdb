@@ -506,6 +506,8 @@ def build(version=None,
         # Handle variations in architecture output
         if arch == "i386" or arch == "i686":
             arch = "386"
+        elif arch == "arm64":
+            pass
         elif "arm" in arch:
             arch = "arm"
         build_command += "GOOS={} GOARCH={} ".format(platform, arch)
@@ -516,8 +518,7 @@ def build(version=None,
             elif arch == "armhf" or arch == "arm":
                 build_command += "GOARM=6 "
             elif arch == "arm64":
-                # TODO(rossmcdonald) - Verify this is the correct setting for arm64
-                build_command += "GOARM=7 "
+                pass
             else:
                 logging.error("Invalid ARM architecture specified: {}".format(arch))
                 logging.error("Please specify either 'armel', 'armhf', or 'arm64'.")
